@@ -34,7 +34,7 @@
 }
 #display{
     position: fixed;
-    top: 1%;
+    top: 2%;
     right: 45%;
     float: left;
 }
@@ -49,7 +49,6 @@
     font-size:25px;
     font-family: "Lucida Console, Courier, Monospace";
 }
-
 
 #currentMonth:hover, #currentYear:hover{
     font-size: 30px;
