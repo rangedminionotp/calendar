@@ -32,6 +32,34 @@ const monthlyPics = [
   'https://media.discordapp.net/attachments/368534832197664769/1057344654720368741/december.jpg'
 ];
 
+window.addEventListener('DOMContentLoaded', function(e) {
+  const picker = new Picker('picker');
+  var values = picker.setCurrentDate();
+  document.getElementById('prev').addEventListener('click', function(e) {
+    values = picker.arrowPrev(values);
+  });
+  document.getElementById('next').addEventListener('click', function(e) {
+    values = picker.arrowNext(values);
+  });
+  document.getElementById('display').addEventListener('click', function(e) {
+    picker.clearToday(values);
+    values = picker.setTodayDate(values);
+  });
+  // https://bobbyhadz.com/blog/javascript-addeventlistener-queryselectorall#:~:text=To%20add%20an%20event%20listener,each%20element%20in%20the%20collection.
+  // how to add event listener to every element with same class
+  const allDays = document.querySelectorAll('.currDay, .nextMonth, .prevMonth');
+  allDays.forEach(day => {
+    day.addEventListener('click', function(e) {
+      if (day.className == 'currDay') {
+        values = picker.currDayChange(e.target, values);
+      } else if (day.className == 'prevMonth') {
+        values = picker.prevGreyClick(e.target, values);
+      } else if (day.className == 'nextMonth') {
+        values = picker.nextGreyClick(e.target, values);
+      }
+    });
+  });
+});
 
 /**
  * CSE186 Assignment 3 - Advanced
@@ -69,7 +97,6 @@ class Picker {
    * @param {string} mm month
    * @param {string} yyyy year
    * @param {number} today index location of today
-   * @param {boolean} flag if 0, then no grey days clicked
    * @return {string} return dd, mm, yyyy, today, flag
   */
   setDate(dd, mm, yyyy, today) {
