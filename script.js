@@ -151,8 +151,7 @@ class Picker {
     bgPicker.style.backgroundImage = `url('${monthlyPics[this.mm]}')`;
   }
   /**
-   *
-   * @return {string} return dd, mm, yyyy, today, flag
+   * set date
    */
   setCurrentDate() {
     // https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
@@ -162,7 +161,7 @@ class Picker {
 
   /**
    *
-   * @param {string} values dd, mm, yyyy, today, flag
+   * clear today cell
    */
   clearToday() {
     const element = document.getElementById('today');
@@ -172,10 +171,9 @@ class Picker {
   }
 
   /**
-   *
+   * function to set month to prev month
    */
   arrowPrev() {
-    // document.write(values[0] , values[1] , values[2]);
     if (this.mm == 0) {
       this.yyyy--;
       this.mm = 12;
@@ -186,9 +184,7 @@ class Picker {
   }
 
   /**
-   *
-   * @param {string} values dd, mm, yyyy, today, flag
-   * @return {string} dd, mm, yyyy, today, flag
+   * function to set month to nex month
    */
   arrowNext() {
     if (this.mm == 11) {
@@ -203,8 +199,6 @@ class Picker {
   /**
    *
    * @param {element} prev event element
-   * @param {string} values dd, mm, yyyy, today, flag
-   * @return {string} dd, mm, yyyy, today, flag
    */
   prevGreyClick(prev) {
     // document.write('hi');
@@ -226,8 +220,6 @@ class Picker {
   /**
    *
    * @param {element} next event element
-   * @param {string} values dd, mm, yyyy, today, flag
-   * @return {string}  dd, mm, yyyy, today, flag
    */
   nextGreyClick(next) {
     this.clearToday();
@@ -246,8 +238,6 @@ class Picker {
   /**
    *
    * @param {element} curr event element
-   * @param {string} values dd, mm, yyyy, today, flag
-   * @return {string} dd, mm, yyyy, today, flag
    */
   currDayChange(curr) {
     this.clearToday();
@@ -261,8 +251,6 @@ class Picker {
 
   /**
    *
-   * @param {string} values dd, mm, yyyy, today, flag
-   * @return {string} dd, mm, yyyy, today, flag
    */
   setTodayDate() {
     this.clearToday();
