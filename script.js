@@ -202,7 +202,7 @@ class Picker {
     this.clearToday(values);
     if (values[1] == 0) {
       values[2]--;
-      values[1] = 11;
+      values[1] = 12;
     }
     values[1]--;
     const content = prev.textContent;
