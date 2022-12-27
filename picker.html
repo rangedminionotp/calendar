@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title> CSE186 Assignment 3 - Advanced</title>
+  <link href="picker.css" rel="stylesheet"/> 
+  <script type="text/javascript" src="Picker.js"></script>
+  <script>
+      window.addEventListener('DOMContentLoaded', function(e) {
+        const picker = new Picker('picker');
+        var values = picker.setCurrentDate();
+        document.getElementById('prev').addEventListener('click', function(e) {
+          values = picker.arrowPrev(values);
+        });
+        document.getElementById('next').addEventListener('click', function(e) {
+          values = picker.arrowNext(values);
+        });
+        document.getElementById('display').addEventListener('click', function(e) {
+          picker.clearToday(values);
+          values = picker.setTodayDate(values);
+        });
+        // https://bobbyhadz.com/blog/javascript-addeventlistener-queryselectorall#:~:text=To%20add%20an%20event%20listener,each%20element%20in%20the%20collection.
+        // how to add event listener to every element with same class
+        const allDays = document.querySelectorAll('.currDay, .nextMonth, .prevMonth');
+        allDays.forEach(day => {
+          day.addEventListener('click', function(e) {
+            if (day.className == 'currDay') {
+              values = picker.currDayChange(e.target, values);
+            } else if (day.className == 'prevMonth') {
+              values = picker.prevGreyClick(e.target, values);
+            } else if (day.className == 'nextMonth') {
+              values = picker.nextGreyClick(e.target, values);
+            }
+          });
+        });
+      });
+  </script>
+</head> 
+<body>
+  <div id="picker">
+    <button id="prev">◀</button>
+    <div id = "display">
+      <div id="currentMonth">month</div>
+      <div id="currentYear">year</div>
+    </div>
+    <button id="next">▶</button>
+    <div id="weekdays">
+    </div>
+    <div id="days"></div>
+  </div>
+</body> 
+</html>
